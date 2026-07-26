@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-enum class OrderStatus
+enum class orderStatus
 {
     PLACED,
     CONFIRMED,
@@ -9,44 +9,42 @@ enum class OrderStatus
     DELIVERED,
     CANCELLED
 };
-
-enum class PaymentMethod
+enum class paymentMethod
 {
     CASH,
-    CARD,
-    UPI
+    UPI,
+    CARD
 };
-
 class Order
 {
 private:
     int orderId;
     double amount;
-    OrderStatus status;
-    PaymentMethod payment;
+    orderStatus status;
+    paymentMethod payment;
 
 public:
-    Order(int id, double amt, PaymentMethod pay)
+    Order(int id, double amt, paymentMethod pay)
     {
         orderId = id;
         amount = amt;
+        status = orderStatus::PLACED;
         payment = pay;
-        status = OrderStatus::PLACED;
     }
 
     void nextStatus()
     {
-        if (status == OrderStatus::PLACED)
+        if (status == orderStatus::PLACED)
         {
-            status = OrderStatus::CONFIRMED;
+            status = orderStatus::CONFIRMED;
         }
-        else if (status == OrderStatus::CONFIRMED)
+        else if (status == orderStatus::CONFIRMED)
         {
-            status = OrderStatus::SHIPPED;
+            status = orderStatus::SHIPPED;
         }
-        else if (status == OrderStatus::SHIPPED)
+        else if (status == orderStatus::SHIPPED)
         {
-            status = OrderStatus::DELIVERED;
+            status = orderStatus::DELIVERED;
         }
         else
         {
@@ -54,11 +52,11 @@ public:
         }
     }
 
-    void cancleOrder()
+    void cancelOrder()
     {
-        if (status == OrderStatus::PLACED || status == OrderStatus::CONFIRMED)
+        if (status == orderStatus::PLACED || status == orderStatus::CONFIRMED)
         {
-            status = OrderStatus::CANCELLED;
+            status = orderStatus::CANCELLED;
         }
         else
         {
@@ -70,15 +68,15 @@ public:
     {
         switch (status)
         {
-        case OrderStatus::PLACED:
+        case orderStatus::PLACED:
             return "PLACED";
-        case OrderStatus::CONFIRMED:
+        case orderStatus::CONFIRMED:
             return "CONFIRMED";
-        case OrderStatus::SHIPPED:
+        case orderStatus::SHIPPED:
             return "SHIPPED";
-        case OrderStatus::DELIVERED:
+        case orderStatus::DELIVERED:
             return "DELIVERED";
-        case OrderStatus::CANCELLED:
+        case orderStatus::CANCELLED:
             return "CANCELLED";
         }
         return "";
@@ -88,11 +86,11 @@ public:
     {
         switch (payment)
         {
-        case PaymentMethod::CASH:
+        case paymentMethod::CASH:
             return "CASH";
-        case PaymentMethod::CARD:
+        case paymentMethod::CARD:
             return "CARD";
-        case PaymentMethod::UPI:
+        case paymentMethod::UPI:
             return "UPI";
         }
         return "";
@@ -110,12 +108,12 @@ public:
 
 int main()
 {
-    Order o1(101, 1000, PaymentMethod::CASH);
+    Order o1(101, 1000, paymentMethod::CASH);
     o1.display();
     o1.nextStatus();
     o1.nextStatus();
     o1.display();
-    o1.cancleOrder();
+    o1.cancelOrder();
     o1.nextStatus();
     o1.display();
     return 0;
