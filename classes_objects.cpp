@@ -10,7 +10,7 @@ public:
     vector<int> prices;
     string deliveryAddress;
     string paymentMethod;
-    string status = "Pending";
+    string status = "PENDING";
     double totalAmount = 0;
     bool isPlaced = false;
 
@@ -56,7 +56,7 @@ public:
     void display()
     {
         cout << "Order : " << orderId << " | Name : " << customerName << endl;
-        cout << "status : " << (isPlaced ? "Placed" : "Pending") << endl;
+        cout << "status : " << (isPlaced ? "PLACED" : "PENDING") << endl;
         for (int i = 0; i < items.size(); i++)
         {
             cout << "- " << items[i] << " x " << quentity[i] << " = " << " $" << prices[i] << endl;
