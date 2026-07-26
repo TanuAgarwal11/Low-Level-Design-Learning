@@ -19,7 +19,6 @@ public:
     {
         if (amount > 0)
         {
-
             balance += amount;
         }
         else
