@@ -53,7 +53,7 @@ struct HttpStatusCodes
         {
             return &internalServerError;
         }
-
+        
         return nullptr;
     }
 };
